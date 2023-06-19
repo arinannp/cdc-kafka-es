@@ -1,0 +1,28 @@
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaConnector
+metadata:
+  name: my-connector-dbz
+  namespace: my-kafka-project
+  labels:
+    strimzi.io/cluster: my-cluster-kafkaconnect-dbz
+spec:
+  class: io.debezium.connector.postgresql.PostgresConnector
+  tasksMax: 1
+  config:
+    database.hostname: postgres-cip-svc.my-postgres-project.svc.cluster.local
+    database.port: 5432
+    database.user: debezium
+    database.password: debezium
+    database.dbname: debezium_db
+    database.server.name: debeziumconn
+    plugin.name: wal2json
+    snapshot.mode: always
+    poll.interval.ms: 100
+    table.include.list: public.person_identity,public.person_churn_history
+    key.converter: org.apache.kafka.connect.json.JsonConverter
+    key.converter.schemas.enable: false
+    value.converter: io.debezium.converters.ByteBufferConverter
+    value.converter.schemas.enable: true                              # false if you dont want to capture the schema also
+    value.converter.delegate.converter.type: org.apache.kafka.connect.json.JsonConverter
+    value.converter.delegate.converter.type.schemas.enable: true      # false if you dont want to capture the schema also
+    database.history.kafka.bootstrap.servers: my-cluster-kafka-kafka-bootstrap:9092

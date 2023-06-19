@@ -1,0 +1,339 @@
+{
+    "took": 0,
+    "timed_out": false,
+    "_shards": {
+        "total": 1,
+        "successful": 1,
+        "skipped": 0,
+        "failed": 0
+    },
+    "hits": {
+        "total": {
+            "value": 10000,
+            "relation": "gte"
+        },
+        "max_score": 1,
+        "hits": [
+            {
+                "_index": ".ds-filebeat-8.5.3-2023.01.14-000001",
+                "_id": "Vwsjr4UBCY0wzQWa77h7",
+                "_score": 1,
+                "_source": {
+                    "@timestamp": "2023-01-14T07:17:24.950Z",
+                    "ecs": {
+                        "version": "8.0.0"
+                    },
+                    "host": {
+                        "name": "docker-desktop"
+                    },
+                    "log": {
+                        "offset": 1096399,
+                        "file": {
+                            "path": "/var/log/containers/kube-apiserver-docker-desktop_kube-system_kube-apiserver-a2a9355272650e91fc8ce1989570395a1cec721f274176a963a41baa123fb3eb.log"
+                        }
+                    },
+                    "stream": "stderr",
+                    "message": "W0114 07:17:24.950121       1 watcher.go:229] watch chan error: etcdserver: mvcc: required revision has been compacted",
+                    "input": {
+                        "type": "container"
+                    },
+                    "agent": {
+                        "type": "filebeat",
+                        "version": "8.5.3",
+                        "ephemeral_id": "37c9bd83-a323-4bd4-a91d-613735c171d9",
+                        "id": "bd01f865-a140-4cf9-aa14-20f9ca1bef6f",
+                        "name": "docker-desktop"
+                    }
+                }
+            },
+            {
+                "_index": ".ds-filebeat-8.5.3-2023.01.14-000001",
+                "_id": "WAsjr4UBCY0wzQWa87hj",
+                "_score": 1,
+                "_source": {
+                    "@timestamp": "2023-01-14T07:17:25.953Z",
+                    "ecs": {
+                        "version": "8.0.0"
+                    },
+                    "host": {
+                        "name": "docker-desktop"
+                    },
+                    "agent": {
+                        "id": "bd01f865-a140-4cf9-aa14-20f9ca1bef6f",
+                        "name": "docker-desktop",
+                        "type": "filebeat",
+                        "version": "8.5.3",
+                        "ephemeral_id": "37c9bd83-a323-4bd4-a91d-613735c171d9"
+                    },
+                    "log": {
+                        "offset": 1096586,
+                        "file": {
+                            "path": "/var/log/containers/kube-apiserver-docker-desktop_kube-system_kube-apiserver-a2a9355272650e91fc8ce1989570395a1cec721f274176a963a41baa123fb3eb.log"
+                        }
+                    },
+                    "stream": "stderr",
+                    "message": "W0114 07:17:25.953651       1 watcher.go:229] watch chan error: etcdserver: mvcc: required revision has been compacted",
+                    "input": {
+                        "type": "container"
+                    }
+                }
+            },
+            {
+                "_index": ".ds-filebeat-8.5.3-2023.01.14-000001",
+                "_id": "WQsjr4UBCY0wzQWa_Lg3",
+                "_score": 1,
+                "_source": {
+                    "@timestamp": "2023-01-14T07:17:27.083Z",
+                    "agent": {
+                        "version": "8.5.3",
+                        "ephemeral_id": "37c9bd83-a323-4bd4-a91d-613735c171d9",
+                        "id": "bd01f865-a140-4cf9-aa14-20f9ca1bef6f",
+                        "name": "docker-desktop",
+                        "type": "filebeat"
+                    },
+                    "log": {
+                        "offset": 93318,
+                        "file": {
+                            "path": "/var/log/containers/kube-controller-manager-docker-desktop_kube-system_kube-controller-manager-745dbcf6d24c9b287204c92e1f5c996bc8ec64fb76b19bfcd7e0a203f0b8ea2d.log"
+                        }
+                    },
+                    "stream": "stderr",
+                    "message": "E0114 07:17:27.083174       1 pvc_protection_controller.go:192] \"Error adding protection finalizer to PVC\" err=\"Operation cannot be fulfilled on persistentvolumeclaims \\\"data-0-my-cluster-kafka-kafka-0\\\": the object has been modified; please apply your changes to the latest version and try again\" PVC=\"my-kafka-project/data-0-my-cluster-kafka-kafka-0\"",
+                    "input": {
+                        "type": "container"
+                    },
+                    "ecs": {
+                        "version": "8.0.0"
+                    },
+                    "host": {
+                        "name": "docker-desktop"
+                    }
+                }
+            },
+            {
+                "_index": ".ds-filebeat-8.5.3-2023.01.14-000001",
+                "_id": "Wgsjr4UBCY0wzQWa_Lg3",
+                "_score": 1,
+                "_source": {
+                    "@timestamp": "2023-01-14T07:17:27.083Z",
+                    "input": {
+                        "type": "container"
+                    },
+                    "ecs": {
+                        "version": "8.0.0"
+                    },
+                    "host": {
+                        "name": "docker-desktop"
+                    },
+                    "agent": {
+                        "type": "filebeat",
+                        "version": "8.5.3",
+                        "ephemeral_id": "37c9bd83-a323-4bd4-a91d-613735c171d9",
+                        "id": "bd01f865-a140-4cf9-aa14-20f9ca1bef6f",
+                        "name": "docker-desktop"
+                    },
+                    "stream": "stderr",
+                    "message": "E0114 07:17:27.083209       1 pvc_protection_controller.go:142] PVC my-kafka-project/data-0-my-cluster-kafka-kafka-0 failed with : Operation cannot be fulfilled on persistentvolumeclaims \"data-0-my-cluster-kafka-kafka-0\": the object has been modified; please apply your changes to the latest version and try again",
+                    "log": {
+                        "offset": 93749,
+                        "file": {
+                            "path": "/var/log/containers/kube-controller-manager-docker-desktop_kube-system_kube-controller-manager-745dbcf6d24c9b287204c92e1f5c996bc8ec64fb76b19bfcd7e0a203f0b8ea2d.log"
+                        }
+                    }
+                }
+            },
+            {
+                "_index": ".ds-filebeat-8.5.3-2023.01.14-000001",
+                "_id": "Wwsjr4UBCY0wzQWa_Lg3",
+                "_score": 1,
+                "_source": {
+                    "@timestamp": "2023-01-14T07:17:25.159Z",
+                    "host": {
+                        "name": "docker-desktop"
+                    },
+                    "agent": {
+                        "name": "docker-desktop",
+                        "type": "filebeat",
+                        "version": "8.5.3",
+                        "ephemeral_id": "37c9bd83-a323-4bd4-a91d-613735c171d9",
+                        "id": "bd01f865-a140-4cf9-aa14-20f9ca1bef6f"
+                    },
+                    "ecs": {
+                        "version": "8.0.0"
+                    },
+                    "log": {
+                        "offset": 93793,
+                        "file": {
+                            "path": "/var/log/containers/strimzi-cluster-operator-5986447-2pksl_my-kafka-project_strimzi-cluster-operator-f0587903c4e462696b99de694560637fc50f1d2473603d65efdde97a7f73f1b8.log"
+                        }
+                    },
+                    "stream": "stdout",
+                    "message": "2023-01-14 07:17:25 INFO  ClusterOperator:120 - Triggering periodic reconciliation for namespace my-kafka-project",
+                    "input": {
+                        "type": "container"
+                    }
+                }
+            },
+            {
+                "_index": ".ds-filebeat-8.5.3-2023.01.14-000001",
+                "_id": "XAsjr4UBCY0wzQWa_Lg3",
+                "_score": 1,
+                "_source": {
+                    "@timestamp": "2023-01-14T07:17:25.272Z",
+                    "log": {
+                        "offset": 93975,
+                        "file": {
+                            "path": "/var/log/containers/strimzi-cluster-operator-5986447-2pksl_my-kafka-project_strimzi-cluster-operator-f0587903c4e462696b99de694560637fc50f1d2473603d65efdde97a7f73f1b8.log"
+                        }
+                    },
+                    "stream": "stdout",
+                    "message": "2023-01-14 07:17:25 INFO  AbstractOperator:237 - Reconciliation #47(timer) Kafka(my-kafka-project/my-cluster-kafka): Kafka my-cluster-kafka will be checked for creation or modification",
+                    "input": {
+                        "type": "container"
+                    },
+                    "ecs": {
+                        "version": "8.0.0"
+                    },
+                    "host": {
+                        "name": "docker-desktop"
+                    },
+                    "agent": {
+                        "id": "bd01f865-a140-4cf9-aa14-20f9ca1bef6f",
+                        "name": "docker-desktop",
+                        "type": "filebeat",
+                        "version": "8.5.3",
+                        "ephemeral_id": "37c9bd83-a323-4bd4-a91d-613735c171d9"
+                    }
+                }
+            },
+            {
+                "_index": ".ds-filebeat-8.5.3-2023.01.14-000001",
+                "_id": "XQsjr4UBCY0wzQWa_Lg3",
+                "_score": 1,
+                "_source": {
+                    "@timestamp": "2023-01-14T07:17:25.366Z",
+                    "input": {
+                        "type": "container"
+                    },
+                    "ecs": {
+                        "version": "8.0.0"
+                    },
+                    "host": {
+                        "name": "docker-desktop"
+                    },
+                    "agent": {
+                        "id": "bd01f865-a140-4cf9-aa14-20f9ca1bef6f",
+                        "name": "docker-desktop",
+                        "type": "filebeat",
+                        "version": "8.5.3",
+                        "ephemeral_id": "37c9bd83-a323-4bd4-a91d-613735c171d9"
+                    },
+                    "log": {
+                        "file": {
+                            "path": "/var/log/containers/strimzi-cluster-operator-5986447-2pksl_my-kafka-project_strimzi-cluster-operator-f0587903c4e462696b99de694560637fc50f1d2473603d65efdde97a7f73f1b8.log"
+                        },
+                        "offset": 94228
+                    },
+                    "stream": "stdout",
+                    "message": "2023-01-14 07:17:25 INFO  AbstractOperator:237 - Reconciliation #48(timer) KafkaConnect(my-kafka-project/my-cluster-kafkaconnect-dbz): KafkaConnect my-cluster-kafkaconnect-dbz will be checked for creation or modification"
+                }
+            },
+            {
+                "_index": ".ds-filebeat-8.5.3-2023.01.14-000001",
+                "_id": "Xgsjr4UBCY0wzQWa_Lg3",
+                "_score": 1,
+                "_source": {
+                    "@timestamp": "2023-01-14T07:17:25.635Z",
+                    "agent": {
+                        "ephemeral_id": "37c9bd83-a323-4bd4-a91d-613735c171d9",
+                        "id": "bd01f865-a140-4cf9-aa14-20f9ca1bef6f",
+                        "name": "docker-desktop",
+                        "type": "filebeat",
+                        "version": "8.5.3"
+                    },
+                    "log": {
+                        "offset": 94517,
+                        "file": {
+                            "path": "/var/log/containers/strimzi-cluster-operator-5986447-2pksl_my-kafka-project_strimzi-cluster-operator-f0587903c4e462696b99de694560637fc50f1d2473603d65efdde97a7f73f1b8.log"
+                        }
+                    },
+                    "stream": "stdout",
+                    "message": "2023-01-14 07:17:25 INFO  AbstractConnectOperator:469 - Reconciliation #48(timer) KafkaConnect(my-kafka-project/my-cluster-kafkaconnect-dbz): creating/updating connector: my-connector-dbz",
+                    "input": {
+                        "type": "container"
+                    },
+                    "ecs": {
+                        "version": "8.0.0"
+                    },
+                    "host": {
+                        "name": "docker-desktop"
+                    }
+                }
+            },
+            {
+                "_index": ".ds-filebeat-8.5.3-2023.01.14-000001",
+                "_id": "Xwsjr4UBCY0wzQWa_Lg3",
+                "_score": 1,
+                "_source": {
+                    "@timestamp": "2023-01-14T07:17:25.636Z",
+                    "agent": {
+                        "name": "docker-desktop",
+                        "type": "filebeat",
+                        "version": "8.5.3",
+                        "ephemeral_id": "37c9bd83-a323-4bd4-a91d-613735c171d9",
+                        "id": "bd01f865-a140-4cf9-aa14-20f9ca1bef6f"
+                    },
+                    "log": {
+                        "offset": 94773,
+                        "file": {
+                            "path": "/var/log/containers/strimzi-cluster-operator-5986447-2pksl_my-kafka-project_strimzi-cluster-operator-f0587903c4e462696b99de694560637fc50f1d2473603d65efdde97a7f73f1b8.log"
+                        }
+                    },
+                    "stream": "stdout",
+                    "message": "2023-01-14 07:17:25 INFO  AbstractConnectOperator:469 - Reconciliation #48(timer) KafkaConnect(my-kafka-project/my-cluster-kafkaconnect-dbz): creating/updating connector: my-connector-elasticsearch",
+                    "input": {
+                        "type": "container"
+                    },
+                    "ecs": {
+                        "version": "8.0.0"
+                    },
+                    "host": {
+                        "name": "docker-desktop"
+                    }
+                }
+            },
+            {
+                "_index": ".ds-filebeat-8.5.3-2023.01.14-000001",
+                "_id": "YAsjr4UBCY0wzQWa_Lg3",
+                "_score": 1,
+                "_source": {
+                    "@timestamp": "2023-01-14T07:17:25.636Z",
+                    "log": {
+                        "offset": 95039,
+                        "file": {
+                            "path": "/var/log/containers/strimzi-cluster-operator-5986447-2pksl_my-kafka-project_strimzi-cluster-operator-f0587903c4e462696b99de694560637fc50f1d2473603d65efdde97a7f73f1b8.log"
+                        }
+                    },
+                    "stream": "stdout",
+                    "message": "2023-01-14 07:17:25 WARN  AbstractConfiguration:137 - Reconciliation #48(timer) KafkaConnect(my-kafka-project/my-cluster-kafkaconnect-dbz): Configuration option \"connector.class\" is forbidden and will be ignored",
+                    "input": {
+                        "type": "container"
+                    },
+                    "ecs": {
+                        "version": "8.0.0"
+                    },
+                    "host": {
+                        "name": "docker-desktop"
+                    },
+                    "agent": {
+                        "id": "bd01f865-a140-4cf9-aa14-20f9ca1bef6f",
+                        "name": "docker-desktop",
+                        "type": "filebeat",
+                        "version": "8.5.3",
+                        "ephemeral_id": "37c9bd83-a323-4bd4-a91d-613735c171d9"
+                    }
+                }
+            }
+        ]
+    }
+}

@@ -1,0 +1,30 @@
+apiVersion: kibana.k8s.elastic.co/v1
+kind: Kibana
+metadata:
+  name: elasticsearch-kibana
+  namespace: my-elastic-project
+spec:
+  version: 8.5.3
+  count: 1
+  elasticsearchRef:
+    name: elasticsearch-cluster
+    namespace: my-elastic-project
+
+
+# spec:
+#   http:
+#     service:
+#       metadata:
+#         name: elasticsearch-kibana-kb-http
+#         namespace: my-elastic-project
+#       spec:
+#         type: NodePort
+#         ports:
+#         - name: elasticsearch-kibana-kb-http-np
+#           port: 5601
+#           targetPort: 5601
+#           nodePort: 30050
+#           protocol: TCP
+#     tls:
+#       selfSignedCertificate:
+#         disabled: true

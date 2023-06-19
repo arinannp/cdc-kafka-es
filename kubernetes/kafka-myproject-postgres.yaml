@@ -1,0 +1,66 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-postgresdb
+  namespace: my-postgres-project
+  labels:
+    app: postgresql
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgresql
+  template:
+    metadata:
+      labels:
+        app: postgresql
+    spec:
+      containers:
+        - name: postgresql
+          image: arinannp/postgres-13:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+          - name: postgresqlnet
+            containerPort: 5432
+            protocol: TCP
+          env:
+          - name: POSTGRES_USER
+            value: "debezium"
+          - name: POSTGRES_PASSWORD
+            value: "debezium"
+          - name: POSTGRES_DB
+            value: "debezium_db"
+      restartPolicy: Always
+          
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres-cip-svc
+  namespace: my-postgres-project
+spec:
+  type: ClusterIP
+  selector:
+    app: postgresql
+  ports:
+    - name: postgresqlnet
+      port: 5432
+      targetPort: 5432
+      protocol: TCP
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres-np-svc
+  namespace: my-postgres-project
+spec:
+  type: NodePort
+  selector:
+    app: postgresql
+  ports:
+    - name: postgresqlnet
+      port: 5432
+      targetPort: 5432
+      nodePort: 30003
+      protocol: TCP

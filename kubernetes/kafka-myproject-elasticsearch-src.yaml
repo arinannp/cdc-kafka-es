@@ -1,0 +1,36 @@
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaConnector
+metadata:
+  name: my-connector-elasticsearch-src
+  namespace: my-kafka-project
+  labels:
+    strimzi.io/cluster: my-cluster-kafkaconnect-dbz
+spec:
+  class: io.confluent.connect.elasticsearch.ElasticsearchSinkConnector
+  tasksMax: 1
+  config:
+    # https://docs.confluent.io/kafka-connect-elasticsearch/current/configuration_options.html
+    connector.class: "io.confluent.connect.elasticsearch.ElasticsearchSinkConnector"
+    tasks.max: "1"
+    topics: "debeziumconn.public.person_identity,debeziumconn.public.person_churn_history"
+    connection.url: "https://elasticsearch-cluster-es-http.my-elastic-project:9200"
+    connection.username: "elastic"
+    connection.password: "e17VotJCgz3A87J35E6uj5J5"
+    key.ignore: "true"
+    behavior.on.malformed.documents: "WARN"
+    key.converter: org.apache.kafka.connect.json.JsonConverter
+    key.converter.schemas.enable: false
+    value.converter: org.apache.kafka.connect.json.JsonConverter
+    value.converter.schemas.enable: true
+    value.converter.delegate.converter.type: org.apache.kafka.connect.json.JsonConverter
+    value.converter.delegate.converter.type.schemas.enable: true
+    # security connection
+    # https://docs.confluent.io/kafka-connectors/elasticsearch/current/configuration_options.html#security
+    elastic.security.protocol: "SSL"
+    elastic.https.ssl.keystore.location: "/opt/kafka/external-configuration/elasticsearch-cluster-keystore-volume/keystore.jks"
+    elastic.https.ssl.keystore.password: "MPx57vkACsRWKVap"
+    elastic.https.ssl.key.password: "MPx57vkACsRWKVap"
+    elastic.https.ssl.keystore.type: "JKS"
+    elastic.https.ssl.truststore.location: "/opt/kafka/external-configuration/elasticsearch-cluster-keystore-volume/keystore.jks"
+    elastic.https.ssl.truststore.password: "MPx57vkACsRWKVap"
+    elastic.https.ssl.truststore.type: "JKS"

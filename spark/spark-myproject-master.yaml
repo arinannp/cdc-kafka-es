@@ -1,0 +1,139 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spark-master-ver324
+  namespace: my-spark-project
+  labels:
+    app: spark-master-ver324
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: spark-master-ver324
+  template:
+    metadata:
+      labels:
+        app: spark-master-ver324
+    spec:
+      hostname: spark
+      containers:
+        - name: spark-master-ver324
+          image: bitnami/spark:3.2.4
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: spark-net-ui
+              containerPort: 8080
+              protocol: TCP
+            - name: spark-net-mast
+              containerPort: 7077
+              protocol: TCP
+          env:
+            - name: SPARK_MODE
+              value: "master"
+            - name: SPARK_RPC_AUTHENTICATION_ENABLED
+              value: "no"
+            - name: SPARK_RPC_ENCRYPTION_ENABLED
+              value: "no"
+            - name: SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED
+              value: "no"
+            - name: SPARK_SSL_ENABLED
+              value: "no"
+            - name: SPARK_USER
+              value: "root"
+            - name: POSTGRES_USER
+              value: "debezium"
+            - name: POSTGRES_PASSWORD
+              value: "debezium"
+            - name: POSTGRES_DB
+              value: "debezium_db"
+            - name: POSTGRES_HOST
+              value: "postgres-np-svc.my-postgres-project:5432"
+            - name: TABLE_DEST
+              value: "public.person_churn_history_captured"
+            - name: BOOTSTRAP_SERVER
+              value: my-cluster-kafka-kafka-external-bootstrap.my-kafka-project:9094
+            - name: TOPIC_NAME
+              value: debeziumconn.public.person_churn_history
+            - name: TOPIC_NAME_DEST
+              value: person_churn_history_predicted
+          volumeMounts: 
+          # https://kubernetes.io/docs/concepts/storage/volumes/#:~:text=hostPath%20FileOrCreate%20configuration%20example
+            - name: spark-connector
+              mountPath: /opt/bitnami/spark/project/connector
+            - name: spark-script
+              mountPath: /opt/bitnami/spark/project/
+            - name: spark-input
+              mountPath: /opt/bitnami/spark/project/source
+            - name: spark-output
+              mountPath: /opt/bitnami/spark/project/output
+      volumes:
+        - name: spark-connector
+          hostPath:
+            # Ensure the file directory is created.
+            type: DirectoryOrCreate
+            # https://devpress.csdn.net/k8s/62fd8326c677032930803ccd.html
+            # https://github.com/docker/for-win/issues/5325
+            # https://stackoverflow.com/questions/71018631/kubernetes-on-docker-for-windows-persistent-volume-with-hostpath-gives-operatio
+            # https://forums.docker.com/t/how-to-mount-hostpath-using-docker-for-mac-kubernetes/44083
+            # https://julien-chen.medium.com/k8s-how-to-mount-local-directory-persistent-volume-to-kubernetes-pods-of-docker-desktop-for-mac-b72f3ca6b0dd
+            path: "/run/desktop/mnt/host/c/Git/cdc-kafka-es/spark/script/connector"
+        - name: spark-script
+          hostPath:
+            path: "/run/desktop/mnt/host/c/Git/cdc-kafka-es/spark/script/"
+        - name: spark-input
+          hostPath:
+            type: DirectoryOrCreate
+            path: "/run/desktop/mnt/host/c/Git/cdc-kafka-es/spark/script/source"
+        - name: spark-output
+          hostPath:
+            type: DirectoryOrCreate
+            path: "/run/desktop/mnt/host/c/Git/cdc-kafka-es/spark/script/output"
+      restartPolicy: Always
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: spark-ver324-cip-svc
+  namespace: my-spark-project
+spec:
+  type: ClusterIP
+  selector:
+    app: spark-master-ver324
+  ports:
+    - name: spark-net-ui
+      port: 8080
+      targetPort: 8080
+      protocol: TCP
+    - name: spark-net-mast
+      port: 7077
+      targetPort: 7077
+      protocol: TCP
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: spark-ver324-np-svc
+  namespace: my-spark-project
+spec:
+  type: NodePort
+  selector:
+    app: spark-master-ver324
+  ports:
+    - name: spark-net-ui
+      port: 8080
+      targetPort: 8080
+      nodePort: 30030
+      protocol: TCP
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: spark-client-master
+  namespace: my-spark-project
+spec:
+  selector:
+    app: spark-master-ver324
+  clusterIP: None
