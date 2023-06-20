@@ -4,6 +4,10 @@
 #     https://www.atlassian.com/git/tutorials/saving-changes/gitignore
 
 # Node artifact files
+elastic-2.5.0/cert/ca.crt
+elastic-2.5.0/cert/tls.crt
+elastic-2.5.0/cert/tls.key
+elastic-2.5.0/cert/keystore.p12
 kubernetes/note.sh
 spark/script/conn-elasticsearch.py
 spark/script/model-cls-randomforest
