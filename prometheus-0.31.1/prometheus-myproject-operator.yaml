@@ -29098,23 +29098,3 @@ spec:
   selector:
     app.kubernetes.io/component: controller
     app.kubernetes.io/name: prometheus-operator
-
-# ---
-# apiVersion: v1
-# kind: Service
-# metadata:
-#   labels:
-#     app.kubernetes.io/component: controller
-#     app.kubernetes.io/name: prometheus-operator
-#     app.kubernetes.io/version: 0.62.0
-#   name: prometheus-operated
-#   namespace: my-prometheus-grafana-project
-# spec:
-#   clusterIP: None
-#   ports:
-#   - name: http
-#     port: 9090
-#     targetPort: http
-#   selector:
-#     app.kubernetes.io/component: controller
-#     app.kubernetes.io/name: prometheus-operator

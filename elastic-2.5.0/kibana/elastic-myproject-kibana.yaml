@@ -9,22 +9,3 @@ spec:
   elasticsearchRef:
     name: elasticsearch-cluster
     namespace: my-elastic-project
-
-
-# spec:
-#   http:
-#     service:
-#       metadata:
-#         name: elasticsearch-kibana-kb-http
-#         namespace: my-elastic-project
-#       spec:
-#         type: NodePort
-#         ports:
-#         - name: elasticsearch-kibana-kb-http-np
-#           port: 5601
-#           targetPort: 5601
-#           nodePort: 30050
-#           protocol: TCP
-#     tls:
-#       selfSignedCertificate:
-#         disabled: true

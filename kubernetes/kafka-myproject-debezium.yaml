@@ -22,7 +22,9 @@ spec:
     key.converter: org.apache.kafka.connect.json.JsonConverter
     key.converter.schemas.enable: false
     value.converter: io.debezium.converters.ByteBufferConverter
-    value.converter.schemas.enable: true                              # false if you dont want to capture the schema also
+    value.converter.schemas.enable: true                              
+    # false if you dont want to capture the schema also
     value.converter.delegate.converter.type: org.apache.kafka.connect.json.JsonConverter
-    value.converter.delegate.converter.type.schemas.enable: true      # false if you dont want to capture the schema also
+    value.converter.delegate.converter.type.schemas.enable: true      
+    # false if you dont want to capture the schema also
     database.history.kafka.bootstrap.servers: my-cluster-kafka-kafka-bootstrap:9092

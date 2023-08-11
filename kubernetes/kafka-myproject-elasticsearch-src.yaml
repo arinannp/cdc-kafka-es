@@ -15,7 +15,7 @@ spec:
     topics: "debeziumconn.public.person_identity,debeziumconn.public.person_churn_history"
     connection.url: "https://elasticsearch-cluster-es-http.my-elastic-project:9200"
     connection.username: "elastic"
-    connection.password: "e17VotJCgz3A87J35E6uj5J5"
+    connection.password: "<paste_the_elastic_password_here>"
     key.ignore: "true"
     behavior.on.malformed.documents: "WARN"
     key.converter: org.apache.kafka.connect.json.JsonConverter

@@ -55,7 +55,7 @@ spec:
             - name: TOPIC_NAME_DEST
               value: person_churn_history_predicted
           volumeMounts: 
-          # https://kubernetes.io/docs/concepts/storage/volumes/#:~:text=hostPath%20FileOrCreate%20configuration%20example
+            # https://kubernetes.io/docs/concepts/storage/volumes/#:~:text=hostPath%20FileOrCreate%20configuration%20example
             - name: spark-connector
               mountPath: /opt/bitnami/spark/project/connector
             - name: spark-script

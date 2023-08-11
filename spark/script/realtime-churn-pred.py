@@ -62,8 +62,10 @@ properties: dict = {
     "password": POSTGRES_PASSWORD,
     "driver": "org.postgresql.Driver"
 }
+
 # import random forest clasification model
 model = RandomForestClassificationModel.load('/opt/bitnami/spark/project/model-cls-randomforest')
+
 # output schema while writing the result to kafka-topic
 schema_target = {
     "type": "struct",
@@ -233,7 +235,7 @@ def write_postgres(stream_df, stream_id):
     dump_df = spark.read.format('csv') \
                 .option('header', True) \
                 .option("inferSchema", True) \
-                .load(f'{project_dir}/source/churn_test_copy.csv')
+                .load(f'{project_dir}/source/churn_validate.csv')
     
     pred_df = dump_df.unionByName(stream_df, allowMissingColumns=True)
 

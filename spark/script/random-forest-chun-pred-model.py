@@ -20,6 +20,8 @@ logging.basicConfig(format='%(asctime)s,%(msecs)d %(levelname)-8s [%(filename)s:
 project_dir =  os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'project')
 logging.info(f"Project Directory in Pod: {project_dir}")
 
+
+#creating spark session
 spark = SparkSession \
     .builder \
     .config('spark.driver.extraClassPath', os.path.join(project_dir, 'connector/postgresql-42.5.1.jar')) \
@@ -29,6 +31,7 @@ spark = SparkSession \
 spark.sparkContext.setLogLevel('INFO')
 
 
+#reading csv file for ML training as spark dataframe
 df = spark.read.format('csv') \
                 .option('header', True) \
                 .option("inferSchema", True) \
@@ -37,7 +40,8 @@ df = spark.read.format('csv') \
 df.show()
 df.printSchema()
 
-########################################################################################################################
+
+#transforming the spark dataframe
 logging.info("########################################## TRANSFORMING DATAFRAME ########################################")
 featureColumns = ["InternetService_index","OnlineBackup_index","MultipleLines_index",
                   "StreamingTV_index","Partner_index","Dependents_index","StreamingMovies_index",
@@ -56,7 +60,6 @@ logging.info(onehotencoder2)
 assembler = VectorAssembler(inputCols = featureColumns, outputCol = "features")
 logging.info(assembler)
 
-########################################################################################################################
 logging.info("########################################## APPLY TRANSFORMATION TO A DATAFRAME ########################################")
 stages1 = indexers
 stages1.append(onehotencoder1)
@@ -68,7 +71,8 @@ df_clean = pipeline.fit(df).transform(df)
 df_clean.show()
 df_clean.printSchema()
 
-########################################################################################################################
+
+#training the ML model using RandomForest Classifier
 logging.info("########################################## SPLITTING AND CREATING ML MODEL ########################################")
 (trainingData, testData) = df_clean.randomSplit([0.75, 0.25], seed=0)
 rf = RandomForestClassifier(labelCol = "Churn_index", 
@@ -91,14 +95,17 @@ prediction.select("customerID", "Churn", "Churn_index", vector_to_array("probabi
                 .option("header","true") \
                 .csv("/opt/bitnami/spark/project/output/churn-randomforest-train")
 
-########################################################################################################################
+
+#checking matrix evaluation for the ML model and persist the ML model
 logging.info("########################################## EVALUATING ML MODEL ########################################")
 evaluator = MulticlassClassificationEvaluator(labelCol="Churn_index", predictionCol="prediction", metricName="accuracy")
 accuracy = evaluator.evaluate(prediction)
 logging.info("Accuracy = %g" %  accuracy)
 
 model.write().overwrite().save('/opt/bitnami/spark/project/model-cls-randomforest')
-########################################################################################################################
+
+
+#test the ML model with the new dataset
 logging.info("########################################## PREDICTING WITH NEW DATASET ########################################")
 model_import = RandomForestClassificationModel.load('/opt/bitnami/spark/project/model-cls-randomforest')
 
