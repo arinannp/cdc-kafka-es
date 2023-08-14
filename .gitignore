@@ -9,3 +9,4 @@ elastic-2.5.0/cert
 kubernetes/note.sh
 spark/script/conn-elasticsearch.py
 spark/script/model-cls-randomforest
+spark/spark-myproject.yaml

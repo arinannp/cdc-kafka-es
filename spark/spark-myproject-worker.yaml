@@ -69,23 +69,34 @@ spec:
           hostPath:
             # Ensure the file directory is created.
             type: DirectoryOrCreate
-            # https://devpress.csdn.net/k8s/62fd8326c677032930803ccd.html
-            # https://github.com/docker/for-win/issues/5325
-            # https://stackoverflow.com/questions/71018631/kubernetes-on-docker-for-windows-persistent-volume-with-hostpath-gives-operatio
-            # https://forums.docker.com/t/how-to-mount-hostpath-using-docker-for-mac-kubernetes/44083
+            # If you have Docker Desktop installed on Windows using WSL, you can use these path:
+            # /run/desktop/mnt/host/c/PATH_TO_FOLDER/
+            # Otherwise, if you use Mac, Linux or Windows installed using Hyper-V, you can follow these step:
             # https://julien-chen.medium.com/k8s-how-to-mount-local-directory-persistent-volume-to-kubernetes-pods-of-docker-desktop-for-mac-b72f3ca6b0dd
-            path: "/run/desktop/mnt/host/c/Git/cdc-kafka-es/spark/script/connector"
+            path: "PATH_TO_THIS_FOLDER_ON_YOUR_LOCAL https://github.com/arinannp/cdc-kafka-es/tree/main/spark/script/connector"
         - name: spark-script
           hostPath:
-            path: "/run/desktop/mnt/host/c/Git/cdc-kafka-es/spark/script/"
+            # If you have Docker Desktop installed on Windows using WSL, you can use these path:
+            # /run/desktop/mnt/host/c/PATH_TO_FOLDER/
+            # Otherwise, if you use Mac, Linux or Windows installed using Hyper-V, you can follow these step:
+            # https://julien-chen.medium.com/k8s-how-to-mount-local-directory-persistent-volume-to-kubernetes-pods-of-docker-desktop-for-mac-b72f3ca6b0dd
+            path: "PATH_TO_THIS_FOLDER_ON_YOUR_LOCAL https://github.com/arinannp/cdc-kafka-es/tree/main/spark/script"
         - name: spark-input
           hostPath:
             type: DirectoryOrCreate
-            path: "/run/desktop/mnt/host/c/Git/cdc-kafka-es/spark/script/source"
+            # If you have Docker Desktop installed on Windows using WSL, you can use these path:
+            # /run/desktop/mnt/host/c/PATH_TO_FOLDER/
+            # Otherwise, if you use Mac, Linux or Windows installed using Hyper-V, you can follow these step:
+            # https://julien-chen.medium.com/k8s-how-to-mount-local-directory-persistent-volume-to-kubernetes-pods-of-docker-desktop-for-mac-b72f3ca6b0dd
+            path: "PATH_TO_THIS_FOLDER_ON_YOUR_LOCAL https://github.com/arinannp/cdc-kafka-es/tree/main/spark/script/source"
         - name: spark-output
           hostPath:
             type: DirectoryOrCreate
-            path: "/run/desktop/mnt/host/c/Git/cdc-kafka-es/spark/script/output"
+            # If you have Docker Desktop installed on Windows using WSL, you can use these path:
+            # /run/desktop/mnt/host/c/PATH_TO_FOLDER/
+            # Otherwise, if you use Mac, Linux or Windows installed using Hyper-V, you can follow these step:
+            # https://julien-chen.medium.com/k8s-how-to-mount-local-directory-persistent-volume-to-kubernetes-pods-of-docker-desktop-for-mac-b72f3ca6b0dd
+            path: "PATH_TO_THIS_FOLDER_ON_YOUR_LOCAL https://github.com/arinannp/cdc-kafka-es/tree/main/spark/script/output"
       restartPolicy: Always
 
 ---
